@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import { auth } from "../firebase/config";
 
 function Home() {
@@ -10,8 +11,11 @@ function Home() {
   };
   return (
     <div>
-      Home
+      <Navbar></Navbar>
       <button onClick={handleLogout}>LogOut</button>
+      <div style={{ height: "100vh", backgroundColor: "red", width: "100%" }}>
+        a
+      </div>
     </div>
   );
 }

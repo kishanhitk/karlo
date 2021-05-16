@@ -55,12 +55,14 @@ const ErrorMessage = styled.p`
   word-wrap: break-word;
   color: red;
   text-align: center;
+  max-width: 200px;
 `;
 const ForgotPasswordButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   text-align: left;
-  margin: 10px;
+  color: gray;
+  margin: 1px 0px;
   border: none;
 `;
 const fadeIn = keyframes`
@@ -74,11 +76,12 @@ const fadeIn = keyframes`
 const Card = styled.div`
   max-width: 70vw;
   display: flex;
+  align-items: center;
   flex-direction: column;
   animation: 1.5s ${fadeIn} ease-in-out;
   border-radius: 2px;
   background-color: white;
-  padding: 30px;
+  padding: 30px 50px;
   text-align: center;
 `;
 
@@ -89,7 +92,7 @@ const Heading = styled.h1`
 `;
 
 const EmailInput = styled.input`
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: "Nunito";
   display: block;
   margin: 8px 0px;
