@@ -28,10 +28,11 @@ function Navbar() {
 
 export default Navbar;
 const MobileMenuItem = styled(Link)`
+  text-decoration: none;
   color: white;
   padding: 50px;
 `;
-const fadeIn = keyframes`
+const slideFromRight = keyframes`
   0% {
     transform: translateX(100%);
   }
@@ -40,7 +41,7 @@ const fadeIn = keyframes`
   }
 `;
 const MobileMenu = styled.div`
-  animation: 0.3s ${fadeIn} cubic-bezier(0.47, 0, 0.745, 0.715);
+  animation: 0.3s ${slideFromRight} cubic-bezier(0.47, 0, 0.745, 0.715);
   justify-content: center;
   align-items: center;
   position: absolute;
