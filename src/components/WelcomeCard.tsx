@@ -1,56 +1,8 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
-import { auth } from "../firebase/config";
-function WelcomeCard() {
-  const [email, setemail] = useState("");
-  const [pass, setpass] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, seterror] = useState<any>(null);
-  const history = useHistory();
-  const handleLogin = () => {
-    setIsLoading(true);
-    seterror(null);
-    console.log({ email, pass });
-    auth
-      .signInWithEmailAndPassword(email, pass)
-      .then(() => {
-        history.replace("/");
-      })
-      .catch((e) => {
-        seterror(e.message);
-      });
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
-  };
-  return (
-    <div>
-      <Card>
-        <Heading>Welcome</Heading>
-        <EmailInput
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setemail(e.target.value)}
-        ></EmailInput>
-        <EmailInput
-          placeholder="Password"
-          type="password"
-          value={pass}
-          onChange={(e) => setpass(e.target.value)}
-        ></EmailInput>
-        <ForgotPasswordButton>Forgot Password?</ForgotPasswordButton>
-        <LoginButton isLoading={isLoading} onClick={handleLogin}>
-          {isLoading ? "Loading ⏰" : "Login"}
-        </LoginButton>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </Card>
-    </div>
-  );
-}
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import { auth } from '../firebase/config';
 
-export default WelcomeCard;
 const ErrorMessage = styled.p`
   word-wrap: break-word;
   color: red;
@@ -87,13 +39,13 @@ const Card = styled.div`
 
 const Heading = styled.h1`
   font-size: 2rem;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   margin-bottom: 40px;
 `;
 
 const EmailInput = styled.input`
   font-size: 1rem;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   display: block;
   margin: 8px 0px;
   padding: 10px;
@@ -115,15 +67,64 @@ const LoginButton = styled.button<LoginButtonProps>`
   display: block;
   border: none;
   opacity: ${(p) => (p.isLoading ? 0.2 : 0.8)};
-  cursor: ${(p) => (p.isLoading ? "progress" : "pointer")};
+  cursor: ${(p) => (p.isLoading ? 'progress' : 'pointer')};
   :hover {
     opacity: ${(p) => (p.isLoading ? 0.3 : 1)};
   }
   background-color: blue;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-size: 1.2rem;
   color: white;
   padding: 8px 30px;
   margin-top: 15px;
   margin-bottom: 45px;
 `;
+
+function WelcomeCard() {
+  const [email, setemail] = useState('');
+  const [pass, setpass] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, seterror] = useState<any>(null);
+  const history = useHistory();
+  const handleLogin = () => {
+    setIsLoading(true);
+    seterror(null);
+    auth
+      .signInWithEmailAndPassword(email, pass)
+      .then(() => {
+        history.replace('/');
+      })
+      .catch((e) => {
+        seterror(e.message);
+      });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+  };
+  return (
+    <div>
+      <Card>
+        <Heading>Welcome</Heading>
+        <EmailInput
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
+        />
+        <EmailInput
+          placeholder="Password"
+          type="password"
+          value={pass}
+          onChange={(e) => setpass(e.target.value)}
+        />
+        <ForgotPasswordButton>Forgot Password?</ForgotPasswordButton>
+        <LoginButton isLoading={isLoading} onClick={handleLogin}>
+          {isLoading ? 'Loading ⏰' : 'Login'}
+        </LoginButton>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      </Card>
+    </div>
+  );
+}
+
+export default WelcomeCard;

@@ -1,32 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 
-function Navbar() {
-  const [showMenu, setshowMenu] = useState(false);
-  return (
-    <>
-      <NavContainer>
-        <Logo>Karlo</Logo>
-        <Navlinks>
-          <Navlink to="/">About</Navlink>
-          <Navlink to="/">Contact</Navlink>
-          <Hamburger onClick={() => setshowMenu(!showMenu)}>
-            {showMenu ? "X" : "="}
-          </Hamburger>
-        </Navlinks>
-      </NavContainer>
-      {showMenu && (
-        <MobileMenu>
-          <MobileMenuItem to="/">About</MobileMenuItem>
-          <MobileMenuItem to="/">Contact</MobileMenuItem>
-        </MobileMenu>
-      )}
-    </>
-  );
-}
-
-export default Navbar;
 const MobileMenuItem = styled(Link)`
   text-decoration: none;
   color: white;
@@ -93,3 +68,29 @@ const Logo = styled.div`
   padding: 20px;
   color: white;
 `;
+
+function Navbar() {
+  const [showMenu, setshowMenu] = useState(false);
+  return (
+    <>
+      <NavContainer>
+        <Logo>Karlo</Logo>
+        <Navlinks>
+          <Navlink to="/">About</Navlink>
+          <Navlink to="/">Contact</Navlink>
+          <Hamburger onClick={() => setshowMenu(!showMenu)}>
+            {showMenu ? 'X' : '='}
+          </Hamburger>
+        </Navlinks>
+      </NavContainer>
+      {showMenu && (
+        <MobileMenu>
+          <MobileMenuItem to="/">About</MobileMenuItem>
+          <MobileMenuItem to="/">Contact</MobileMenuItem>
+        </MobileMenu>
+      )}
+    </>
+  );
+}
+
+export default Navbar;
